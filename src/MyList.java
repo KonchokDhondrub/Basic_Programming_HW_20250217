@@ -1,8 +1,8 @@
 public interface MyList {
 
-    void add(String element);
+    void add(Person element);
     int size();
-    String get(int index);
+    Person get(int index);
 
     void print();
 }
