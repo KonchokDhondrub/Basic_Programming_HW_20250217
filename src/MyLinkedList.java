@@ -41,7 +41,7 @@ public class MyLinkedList implements MyList {
     public void print() {
         Node node = head;
         while (node!=null){
-            System.out.print(node.getIndex() + " ");
+            System.out.printf("[%d] ",node.getIndex());
             System.out.println(node.getValue());
             node = node.getNext();
         }
