@@ -8,13 +8,12 @@ public class Main {
         myList.add(new Person("Jack", 23));
         myList.add(new Person("Jannet", 24));
 
-
-        int select = 1;
+        int select = 0;
         System.out.printf("--- Print Individual [%d]---%n",select);
         System.out.println(myList.get(select));
 
         System.out.printf("--- Print All --- of: %d persons %n", myList.size());
         myList.print();
-
+//        System.out.println(myList);
     }
 }
