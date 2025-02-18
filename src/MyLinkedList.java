@@ -22,36 +22,53 @@ public class MyLinkedList implements MyList {
         return size;
     }
 
+    public void remove(int index){
+        Node currentNode = getByIndex(index);
+        Node prevNode = currentNode.getPrev();
+        Node nextNode = currentNode.getNext();
+
+        if (prevNode != null){
+            prevNode.setNext(nextNode);
+        } else {
+            head = nextNode;
+        }
+
+        if (nextNode != null){
+            nextNode.setPrev(prevNode);
+        } else {
+            tail = prevNode;
+        }
+        size--;
+
+        currentNode.setPrev(null);
+        currentNode.setNext(null);
+    }
+
     @Override
     public Person get(int index) {
         if (index>=0 && index<=size){
-            return getByIndex(index);
+            return getByIndex(index).getValue();
         }
         return null;
     }
-
-    private Person getByIndex(int index){
+    private Node getByIndex(int index){
         int counter = 0;
         if(index<0 || index>=size){
             return null;
         }
-        Node current = head;
-        while (current != null && counter<index) {
-            if (current.getIndex() == index) {
-                counter++;
-                return current.getValue();
-            }
+
+        Node currentNode = head;
+        while (currentNode != null && counter<index) {
+            currentNode = currentNode.getNext();
             counter++;
-            current = current.getNext();
         }
-        return current.getValue();
+        return currentNode;
     }
 
     @Override
     public void print() {
         Node node = head;
         while (node!=null){
-            System.out.printf("[%d] ",node.getIndex());
             System.out.println(node.getValue());
             node = node.getNext();
         }
@@ -70,7 +87,6 @@ public class MyLinkedList implements MyList {
 
     public static class Node {
         private Node prev;
-        private int index;
         private Person value;
         private Node next;
 
@@ -78,9 +94,6 @@ public class MyLinkedList implements MyList {
             this.prev = prev;
             this.value = value;
             this.next = next;
-        }
-        public int getIndex() {
-            return index;
         }
 
         public Node getPrev() {
@@ -104,5 +117,4 @@ public class MyLinkedList implements MyList {
             this.next = next;
         }
     }
-
 }
