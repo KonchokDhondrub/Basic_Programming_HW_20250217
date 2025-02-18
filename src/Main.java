@@ -8,12 +8,20 @@ public class Main {
         myList.add(new Person("Jack", 23));
         myList.add(new Person("Jannet", 24));
 
-        int select = 0;
-        System.out.printf("--- Print Individual [%d]---%n",select);
+        int select = 1;
+        /*
+        System.out.printf("\tPrint Individual by index [%d]%n",select);
         System.out.println(myList.get(select));
 
-        System.out.printf("--- Print All --- of: %d persons %n", myList.size());
+        System.out.printf("\tPrint all of: %d persons %n", myList.size());
         myList.print();
-//        System.out.println(myList);
+        */
+
+        System.out.printf("\nRemove Individual by index [%d] - [%s]\n", select, myList.get(select));
+        myList.remove(select);
+
+        System.out.printf("\nPrint all of: %d persons %n", myList.size());
+        myList.print();
+
     }
 }
