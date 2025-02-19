@@ -22,10 +22,12 @@ public class MyLinkedList implements MyList {
         return size;
     }
 
-    public void remove(int index){
+    public String remove(int index){
         Node currentNode = getByIndex(index);
         Node prevNode = currentNode.prev;
         Node nextNode = currentNode.next;
+
+        if (currentNode == null) return null;
 
         if (prevNode != null){
             prevNode.next = nextNode;
@@ -42,6 +44,7 @@ public class MyLinkedList implements MyList {
 
         currentNode.prev = null;
         currentNode.next = null;
+        return currentNode.value.toString();
     }
 
     @Override

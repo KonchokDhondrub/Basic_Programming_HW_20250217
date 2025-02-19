@@ -17,11 +17,10 @@ public class Main {
         myList.print();
         */
 
-        System.out.printf("\nRemove Individual by index [%d] - [%s]\n", select, myList.get(select));
-        myList.remove(select);
+        System.out.printf("\nRemove Individual by index [%d]\n", select);
+        System.out.println(myList.remove(select));
 
         System.out.printf("\nPrint all of: %d persons %n", myList.size());
         myList.print();
-
     }
 }
