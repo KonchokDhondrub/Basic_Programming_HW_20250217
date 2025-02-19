@@ -10,8 +10,8 @@ public class MyLinkedList implements MyList {
         if (head == null){
             head = node;
         } else {
-            tail.setNext(node);
-            node.setPrev(tail);
+            tail.next = node;
+            node.prev = tail;
         }
         tail = node;
         size++;
@@ -24,30 +24,30 @@ public class MyLinkedList implements MyList {
 
     public void remove(int index){
         Node currentNode = getByIndex(index);
-        Node prevNode = currentNode.getPrev();
-        Node nextNode = currentNode.getNext();
+        Node prevNode = currentNode.prev;
+        Node nextNode = currentNode.next;
 
         if (prevNode != null){
-            prevNode.setNext(nextNode);
+            prevNode.next = nextNode;
         } else {
             head = nextNode;
         }
 
         if (nextNode != null){
-            nextNode.setPrev(prevNode);
+            nextNode.prev = prevNode;
         } else {
             tail = prevNode;
         }
         size--;
 
-        currentNode.setPrev(null);
-        currentNode.setNext(null);
+        currentNode.prev = null;
+        currentNode.next = null;
     }
 
     @Override
     public Person get(int index) {
         if (index>=0 && index<=size){
-            return getByIndex(index).getValue();
+            return getByIndex(index).value;
         }
         return null;
     }
@@ -59,7 +59,7 @@ public class MyLinkedList implements MyList {
 
         Node currentNode = head;
         while (currentNode != null && counter<index) {
-            currentNode = currentNode.getNext();
+            currentNode = currentNode.next;
             counter++;
         }
         return currentNode;
@@ -69,8 +69,8 @@ public class MyLinkedList implements MyList {
     public void print() {
         Node node = head;
         while (node!=null){
-            System.out.println(node.getValue());
-            node = node.getNext();
+            System.out.println(node.value);
+            node = node.next;
         }
     }
 
@@ -79,13 +79,13 @@ public class MyLinkedList implements MyList {
         String result = "";
         Node currentNode = head;
         while (currentNode!=null){
-            result+= currentNode.getValue() + System.lineSeparator();
-            currentNode= currentNode.getNext();
+            result+= currentNode.value + System.lineSeparator();
+            currentNode= currentNode.next;
         }
         return result;
     }
 
-    public static class Node {
+    private static class Node {
         private Node prev;
         private Person value;
         private Node next;
@@ -93,27 +93,6 @@ public class MyLinkedList implements MyList {
         public Node(Node prev, Person value, Node next) {
             this.prev = prev;
             this.value = value;
-            this.next = next;
-        }
-
-        public Node getPrev() {
-            return prev;
-        }
-        public void setPrev(Node prev) {
-            this.prev = prev;
-        }
-
-        public Person getValue() {
-            return value;
-        }
-        public void setValue(Person value) {
-            this.value = value;
-        }
-
-        public Node getNext() {
-            return next;
-        }
-        public void setNext(Node next) {
             this.next = next;
         }
     }
