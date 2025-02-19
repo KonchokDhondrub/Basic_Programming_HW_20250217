@@ -1,4 +1,6 @@
-public class MyLinkedList implements MyList {
+import java.util.Iterator;
+
+public class MyLinkedList implements MyList, Iterable<Person> {
     private Node head = null;
     private Node tail = null;
     private int size = 0;
@@ -86,6 +88,25 @@ public class MyLinkedList implements MyList {
             currentNode= currentNode.next;
         }
         return result;
+    }
+
+    @Override
+    public Iterator<Person> iterator() {
+        Iterator<Person> iterator = new Iterator<Person>() {
+            private Node currentNode = head;
+            @Override
+            public boolean hasNext() {
+                return currentNode!=null;
+            }
+
+            @Override
+            public Person next() {
+                Person value = currentNode.value;
+                currentNode = currentNode.next;
+                return value;
+            }
+        };
+        return iterator;
     }
 
     private static class Node {
